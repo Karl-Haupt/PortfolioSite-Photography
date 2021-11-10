@@ -1,9 +1,6 @@
-//TODO: Encrypt password before saving user
-//TODO: Compare user password
 const mongoose = require('mongoose');
 const validator = require('validator');
-//TODO: Import two libaries -> bcrypto + jwt
-const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -32,5 +29,19 @@ const userSchema = new mongoose.Schema({
         default: Date.now()
     }
 });
+
+//Encrypt password before saving the user
+userSchema.pre('save', async function(next) {
+    if(!this.isModified('password')) {
+        next();
+    }
+
+    this.password = await bcrypt.hash(this.password, 10);
+});
+
+//Compare's user password
+userSchema.methods.comparePassword = async function(enteredPassword) {
+    bcrypt.compare(enteredPassword, this.password);
+};
 
 module.exports = mongoose.model('User', userSchema);
