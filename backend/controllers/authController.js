@@ -1,8 +1,23 @@
 const User = require('../models/user');
 
 const ErrorHandler = require('../utils/errorHandler');
-const catchAsyncError = require('../middlewares/catchAsyncError');
-//TODO: sendToken, sendEmail
+const catchAsyncError = require('../middleware/catchAsyncError');
+
+//Register user => /api/v1/register
+exports.registerUser = catchAsyncError( async (req, res, next) => {
+    const { name, email, password } = req.body;
+
+    const user = await User.create({
+        name,
+        email,
+        password
+    });
+
+    res.status(200).send({
+        success: true,
+        user
+   });
+});
 
 //Login User => /api/v1/login
 exports.loginUser = catchAsyncError( async (req, res, next) => {
@@ -26,6 +41,25 @@ exports.loginUser = catchAsyncError( async (req, res, next) => {
    
 });
 
-//currently login in user
+//Get curently logged in user details => api/v1/message
+exports.getUserProfile = catchAsyncError(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
 
-//logout
+    res.status(200).send({
+        success: true,
+        user
+    });
+});
+
+//Logout user => /api/v1/logout
+exports.logout = catchAsyncError( async (req, res, next) => {
+    res.cookie('token', null, {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    });
+
+    res.status(200).json({
+        success: true,
+        message: 'Logged out'
+    });
+});
