@@ -1,6 +1,6 @@
 import "./app.scss";
 import Navbar from "./components/navbar/Navbar";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "./components/pages/home/Home";
 import About from "./components/pages/about/About";
@@ -9,15 +9,18 @@ import Gallery from "./components/pages/gallery/Gallery";
 
 function App() {
   return (
-    <>
+      <>
       <Navbar />
+      
       <Routes>
-        <Route path="/" exact component={Home} />
-        <Route path="/gallery" component={Gallery} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
+      
+        <Route path = "/" element={<Home/>} exact/>
+        <Route path="/gallery" element={<Gallery/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/contact" element={<Contact/>} />
+      
       </Routes>
-    </>
+      </>
   );
 }
 
