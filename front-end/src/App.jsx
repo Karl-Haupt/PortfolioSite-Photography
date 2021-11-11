@@ -6,8 +6,16 @@ import Home from "./components/pages/home/Home";
 import About from "./components/pages/about/About";
 import Contact from "./components/pages/contact/Contact";
 import Gallery from "./components/pages/gallery/Gallery";
+import Login from "./components/Login/Login";
+
+import { loadUser } from "./Redux/Actions/userActions";
+import store from "./store";
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <div className="app">
       <Navbar />
