@@ -8,6 +8,7 @@ import About from "./components/pages/about/About";
 import Contact from "./components/pages/contact/Contact";
 import Gallery from "./components/pages/gallery/Gallery";
 import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard';
 
 import { loadUser } from './Redux/Actions/userActions';
 import store from './store';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
       
       </Routes>
       </>
