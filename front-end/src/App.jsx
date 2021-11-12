@@ -12,9 +12,9 @@ import { loadUser } from "./Redux/Actions/userActions";
 import store from "./store";
 
 function App() {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+  // useEffect(() => {
+  //   store.dispatch(loadUser());
+  // }, []);
 
   return (
     <div className="app">
