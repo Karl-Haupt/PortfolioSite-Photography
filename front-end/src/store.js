@@ -3,9 +3,13 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { authReducer } from "./Redux/Reducers/userReducers";
+import { mediaReducer, newMediaReducer, mediaDetailsReducer } from "./Redux/Reducers/mediaReducer";
 
 const reducer = combineReducers({
   auth: authReducer,
+  medias: mediaReducer,
+  newMedia: newMediaReducer,
+  mediaDetails: mediaDetailsReducer
 });
 
 const middleware = [thunk];
