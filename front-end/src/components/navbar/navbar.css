@@ -1,0 +1,124 @@
+.navbar-wrapper-black .nav-menu {
+  background-color: black;
+  color: white;
+}
+.navbar-wrapper-black .nav-text a {
+  background-color: black;
+  color: white;
+}
+
+.navbar-wrapper-black .menu-bars {
+  background-color: none;
+  color: white;
+}
+
+.navbar-wrapper-white .nav-menu {
+  background-color: white;
+  color: black;
+}
+.navbar-wrapper-white .nav-text a {
+  background-color: white;
+  color: black;
+}
+
+.navbar-wrapper-white .menu-bars {
+  background-color: none;
+  color: black;
+}
+
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.menu-bars {
+  margin-right: 2rem;
+  font-size: 2rem;
+  background-color: none;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.nav-menu {
+  width: 360px;
+  height: 100vh;
+  display: flex;
+  justify-content: right;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  right: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  right: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  padding: 8px 0px 8px 16px;
+  height: 9rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: flex-start;
+
+  list-style: none;
+}
+
+.nav-text a {
+  width: 95%;
+  height: 60%;
+
+  margin-bottom: 15px;
+  padding: 0 16px;
+
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+
+.navbar-toggle {
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.nav-icons {
+  margin-top: 2.5rem;
+  padding: 8px 0px 8px 16px;
+  border-radius: 16px;
+
+  list-style: none;
+  text-decoration: none;
+}
+.nav-icons li {
+  padding: 0 16px;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav-icons a {
+  margin-left: 17px;
+  color: black;
+}
+
+span {
+  margin-left: 16px;
+}

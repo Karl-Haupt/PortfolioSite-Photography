@@ -29,7 +29,6 @@ exports.createPhoto = catchAsyncError( async (req, res, next) => {
     }
 
     req.body.images = imagesLinks;
-    // req.body.user = req.user.id;
 
     const photos = await Photo.create(req.body);
 

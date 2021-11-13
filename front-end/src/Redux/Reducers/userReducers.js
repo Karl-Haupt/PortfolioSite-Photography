@@ -32,7 +32,7 @@ export const authReducer = (state = { user: {} }, action ) => {
                 isAuthenticated: false,
                 user: null
             }
-        case LOAD_USER_FAIL: 
+        case LOAD_USER_FAIL:
             return {
                 loading: false,
                 isAuthenticated: false,
@@ -52,7 +52,7 @@ export const authReducer = (state = { user: {} }, action ) => {
                 user: null,
                 error: action.payload
             }
-        
+
         case CLEAR_ERRORS:
             return {
                 ...state,
