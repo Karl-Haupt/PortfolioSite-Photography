@@ -7,6 +7,7 @@ const ErrorHandler = require('../utils/errorHandler');
 //Create photo => /api/v1/photos/new
 exports.createPhoto = catchAsyncError( async (req, res, next) => {
     
+    console.log('start');
     //Handle 1/more images
     let images = [];
     if(typeof req.body.images === 'string') {
@@ -15,19 +16,33 @@ exports.createPhoto = catchAsyncError( async (req, res, next) => {
         images = req.body.images;
     }
 
+
     //Upload the files to cloudinary
     let imagesLinks = [];
-    for(let i = 0; i < images.length; i++) {
+    console.log('second ' + images.length);
+    for (let i = 0; i < images.length; i++) {
+        console.log('before loop');
         const result = await cloudinary.v2.uploader.upload(images[i], {
-            folder: 'photod'
-        });
-    
+            folder: 'photos',
+
+        }, (err, image) => {
+            if(err) {
+                console.log(err);
+                console.log(err.message + ': ' + err.name);
+            }
+            if(image) console.log(image);
+        })
+
+        console.log('third');
+
         imagesLinks.push({
             public_id: result.public_id,
             url: result.secure_url
-        });
+        })
     }
 
+    console.log('finsh');
+    
     req.body.images = imagesLinks;
 
     const photos = await Photo.create(req.body);
@@ -35,8 +50,7 @@ exports.createPhoto = catchAsyncError( async (req, res, next) => {
     res.status(201).json({
         success: true,
         photos
-    });
-    
+    })
 });
 
 //Get all photos => /api/v1/photos

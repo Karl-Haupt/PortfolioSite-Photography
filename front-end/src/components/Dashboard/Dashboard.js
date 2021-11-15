@@ -13,7 +13,7 @@ const Dashboard = () => {
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
 
-    const { loading, error, success } = useSelector(state => state.newMedia);
+    const { error, success } = useSelector(state => state.newMedia);
     
     useEffect(() => {
         if(error) {
@@ -30,12 +30,7 @@ const Dashboard = () => {
     const submitHandler = e => {
         e.preventDefault();
 
-        const formData = new FormData();
-        images.forEach(image => {
-            formData.append('images', image);
-        });
-
-        dispatch(addMedia(formData))
+        dispatch(addMedia({ images: images}))
     }
 
     const onChange = e => {
@@ -92,7 +87,7 @@ const Dashboard = () => {
                         
                     </div>
                     
-                    <div class="dashboard--preview">
+                    <div className="dashboard--preview">
                         {imagesPreview.map(img => (
                             <img src={img} key={img} alt="Images Preview" className="mt-3 mr-2" width="55" height="52" />
                         ))}
@@ -114,15 +109,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
-
- //Get all media test
-//  const { loading, medias, error} = useSelector(state => state.medias);
-
-//  useEffect(() => {
-//      if(error) {
-//          return alert.error(error);
-//      }
-
-//      dispatch(getMediaFiles());
-//      console.log(`Length: `, medias.length);
-//  }, [dispatch, alert, error ])

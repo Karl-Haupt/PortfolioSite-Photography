@@ -4,10 +4,14 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as BsIcons from "react-icons/bs";
 import { useState } from "react";
-import { SidebarData } from "./SidebarData";
+import Login from '../Login/Login';
+
 
 export default function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const [loginBar, setLoginBar] = useState(false);
+
+  const showLogin = () => setLoginBar(!loginBar);
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
@@ -37,7 +41,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link to="/about">
+              <Link to="/contact">
                 <span>About</span>
               </Link>
             </li>
@@ -47,21 +51,36 @@ export default function Navbar() {
               </Link>
             </li>
           </div>
-          <div className="nav-icons">
-            <li>
-              <a href="#">
-                <BsIcons.BsInstagram />
-              </a>
-              <a href="#">
-                <BsIcons.BsFacebook />
-              </a>
-              <a href="#">
-                <BsIcons.BsTwitter />
-              </a>
-            </li>
-          </div>
+            <div className="nav-icons">
+              <li>
+                <a href="#nowhere">
+                  <BsIcons.BsInstagram />
+                </a>
+                <a href="#nowhere">
+                  <BsIcons.BsFacebook />
+                </a>
+                <a href="#nowhere">
+                  <BsIcons.BsTwitter />
+                </a>
+              </li>
+            </div>
+
+            <div className="nav-icons nav__login" onClick={showLogin}>
+              <li>
+                  <a href="#nowhere">
+                    <span className="navbar__inline">
+                      <FaIcons.FaRegUserCircle className="client--icon"/>
+                      Client Login
+                    </span>
+                  </a>
+              </li>
+            </div>
         </ul>
       </nav>
+
+      <div className={loginBar ? "login loginactive" : "login"} >
+              <Login />
+      </div>
     </div>
   );
 }

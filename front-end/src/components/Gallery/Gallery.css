@@ -1,0 +1,26 @@
+img {
+    max-width: 100%;
+    display: block;
+}
+  
+picture {
+    margin: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    margin-bottom: 10px;
+    break-inside: avoid;
+}
+  
+picture > img {
+    grid-row: 1 / -1;
+    grid-column: 1;
+}
+  
+.container {
+    column-count: 3;
+    column-gap: 10px;
+}
+
+.gallery--padding {
+    padding: 0 9rem;
+}
