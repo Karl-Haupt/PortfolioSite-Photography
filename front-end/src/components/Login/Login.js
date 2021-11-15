@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { useAlert } from "react-alert";
 import "./login.css";
 
@@ -9,37 +9,36 @@ import { login, logout, clearErrors } from "../../Redux/Actions/userActions";
 const Login = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [sidebar, setSidebar] = useState(false);
 
-  const { user, isAuthenticated, error, loading } = useSelector(
+  const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
   );
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("Logined successfully");
-      alert.success(user.name);
+      navigate('dashboard');
+      alert.success("Logined Successfully");
     }
 
     if (loading && error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, loading, error, isAuthenticated]);
+  }, [dispatch, alert, loading, error, isAuthenticated, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
 
-  const showSidebar = () => setSidebar(!sidebar);
   return (
-    <div className={sidebar ? "login active" : "login"} onClick={showSidebar}>
+    <div>
       <form className="login__form" onSubmit={submitHandler}>
-        <div class="input--group">
+        <div className="input--group">
           <input
             className="input"
             type="email"
@@ -50,7 +49,7 @@ const Login = () => {
           />
         </div>
 
-        <div class="input--group">
+        <div className="input--group">
           <input
             className="input"
             type="password"
@@ -61,12 +60,14 @@ const Login = () => {
           />
         </div>
 
-        <button class="login__btn" type="submit">
+        <button className="login__btn" type="submit">
           Login
         </button>
+
+        <button className="login__btn" type="submit">Logout</button>
       </form>
 
-      {/* <button type="submit" onClick={logoutHandler}>Logout</button> */}
+      
     </div>
   );
 };

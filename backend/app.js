@@ -14,10 +14,15 @@ const media = require('./routes/media');
 
 dotenv.config({ path: 'backend/config/config.env' });
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ limit: "50mb" })); 
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+// app.use(express.json());
+// app.use(bodyParser.urlencoded({ limit: '150mb', extended: true }));
 app.use(cookieParser());
-app.use(fileUpload());
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 }
+}));
 
 app.use('/api/v1', auth);
 app.use('/api/v1', media);

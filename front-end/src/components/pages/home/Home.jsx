@@ -2,7 +2,7 @@ import "./home.css";
 
 function Home() {
   return (
-    <div className="home">
+    <div className="home" data-aos="zoom-in-up">
       <div className="content">
         <header>
           <h1>Koos Kombuis</h1>
@@ -27,6 +27,7 @@ function Home() {
           </ul>
         </footer>
       </div>
+      
     </div>
   );
 }
