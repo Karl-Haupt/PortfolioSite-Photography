@@ -35,6 +35,11 @@ const Login = () => {
     dispatch(login(email, password));
   };
 
+  const logoutHandler = () => {
+    dispatch(logout());
+    alert.success("Logged out successfully");
+  }
+
   return (
     <div>
       <form className="login__form" onSubmit={submitHandler}>
@@ -60,11 +65,15 @@ const Login = () => {
           />
         </div>
 
-        <button className="login__btn" type="submit">
-          Login
-        </button>
+        <div className="flex">
+          <button className="login__btn" type="submit">
+            Login
+          </button>
 
-        <button className="login__btn" type="submit">Logout</button>
+          <button className="login__btn" type="submit" onClick={logoutHandler}>
+            Logout
+          </button>
+        </div>
       </form>
 
       
