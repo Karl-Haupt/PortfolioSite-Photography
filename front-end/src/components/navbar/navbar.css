@@ -146,3 +146,9 @@ span {
   margin-top: 0.4rem;
   margin-right: 0.5rem;
 }
+
+@media screen and (max-width: 320px) {
+  .nav__login {
+    margin-top: 65%;
+  }
+}

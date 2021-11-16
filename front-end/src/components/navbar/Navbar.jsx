@@ -11,8 +11,13 @@ export default function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const [loginBar, setLoginBar] = useState(false);
 
-  const showLogin = () => setLoginBar(!loginBar);
+  const showLogin = () => {
+    setSidebar(sidebar);
+    setLoginBar(!loginBar);
+  }
+
   const showSidebar = () => setSidebar(!sidebar);
+  
 
   return (
     <div className="navbar-wrapper-white">
@@ -23,7 +28,7 @@ export default function Navbar() {
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items" onClick={showSidebar}>
-          <li className="navbar-toggle">
+          <li className="navbar-toggle" onClick={!loginBar && showLogin}>
             <Link to="#" className="menu-bars">
               <AiIcons.AiOutlineClose />
             </Link>

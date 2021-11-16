@@ -1,18 +1,17 @@
 
 .login {
-    z-index: 99;
-    position: absolute;
+    position: fixed;
     top: 60%;
     height: 40%;
-    width: 76.3%; /*76.3%*/
     background-color: #000;
     opacity: 0.8;
-    margin-left: calc(100% + 10px);
+    right: -100%;
     transition: 850ms;
 }
 
 .login.loginactive {
-    margin: 0;
+    width: 100%;
+    right: 0%;
     transition: 350ms;
 }
 
@@ -47,7 +46,7 @@
     text-align: center;
     text-transform: uppercase;
     white-space: nowrap;
-    margin-left: 45%
+    /* margin-left: 45% */
 }
 
 .login__btn:hover {
@@ -55,10 +54,24 @@
     color: #fff;
 }
 
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+
 @media screen  and (min-width: 1024px) {
     .input--group .input {
         flex-grow: 0.6;
         margin-left: 30%
+    }
+
+    .login__btn {
+        margin-left: 42%
+    }
+
+    .flex button:last-child {
+        margin-left: 1rem;
     }
     
 }
@@ -69,7 +82,11 @@
     } 
 
     .login__btn {
-        margin-left: 35%;
-        padding: 1rem 2rem;
+        margin-left: 15%;
     }
+
+    .flex button:last-child {
+        margin-left: 1rem;
+    }
+    
 }
